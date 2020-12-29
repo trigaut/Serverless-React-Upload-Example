@@ -2,7 +2,7 @@ import superagent from "superagent";
 
 type Method = "get" | "post" | "put" | "patch" | "delete";
 
-const baseUrl = process.env.REACT_APP_API_BASE_URL || "";
+const baseUrl = "https://979siaxifj.execute-api.eu-west-1.amazonaws.com/api";
 
 export const request = async (
   method: Method,

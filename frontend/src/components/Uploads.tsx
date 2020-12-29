@@ -38,7 +38,7 @@ export const Uploads: React.FC<UploadsProps> = ({
 
       const { url, fields } = (await request(
         "get",
-        `/get-signed-url?uploadToken=${uploadToken}&filetype=${file.type}`
+        `/get-signed-upload-url?uploadToken=${uploadToken}&filetype=${file.type}`
       )) as SignedUrl;
 
       uploadFields.current = {

@@ -10,6 +10,7 @@
     "antd": "4.9.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-use": "^15.3.8",
     "superagent": "^6.1.0",
     "typescript": "~3.8.0"
   },

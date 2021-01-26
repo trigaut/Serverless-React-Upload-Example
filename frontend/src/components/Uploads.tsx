@@ -8,12 +8,14 @@ import { allFileTypes, getFileSizeLimit } from "./utils";
 import { request } from "./client";
 
 export type UploadsProps = {
+  initialFiles?: UploadFile[];
   getUploadToken: () => Promise<string>;
   getDownloadUrl: (fileId: string) => Promise<string>;
   acceptedFileTypes?: string;
 };
 
 export const Uploads: React.FC<UploadsProps> = ({
+  initialFiles = [],
   getUploadToken,
   getDownloadUrl,
   acceptedFileTypes = allFileTypes,
@@ -21,7 +23,7 @@ export const Uploads: React.FC<UploadsProps> = ({
   const uploadFields = useRef<S3Fields>();
   const filePrefixByUid = useRef<Record<string, string>>({});
 
-  const [files, setFiles] = useState<UploadFile[]>([]);
+  const [files, setFiles] = useState<UploadFile[]>(initialFiles);
 
   const uploadFile = async (file: RcFile) => {
     const maxSize = getFileSizeLimit(file.type);
@@ -38,13 +40,13 @@ export const Uploads: React.FC<UploadsProps> = ({
 
       const { url, fields } = (await request(
         "get",
-        `/get-signed-upload-url?uploadToken=${uploadToken}&filetype=${file.type}`
+        `/signed-upload-url?uploadToken=${uploadToken}&fileType=${file.type}`
       )) as SignedUrl;
 
       uploadFields.current = {
         ...fields,
         "Content-Type": file.type,
-        key: `${uploadToken}/\${filename}`,
+        key: `${uploadToken}/\${fileName}`,
       };
 
       return url;

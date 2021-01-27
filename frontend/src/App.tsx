@@ -1,8 +1,9 @@
 import React from "react";
-import { Uploads } from "components";
-import { request } from "components/client";
 import { useAsync } from "react-use";
 import { Spin } from "antd";
+
+import { Uploads } from "components";
+import { request } from "libs/client";
 
 type S4File = {
   filePrefix: string;

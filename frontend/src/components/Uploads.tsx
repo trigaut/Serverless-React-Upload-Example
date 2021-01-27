@@ -3,9 +3,9 @@ import { Upload, Button, message } from "antd";
 import { UploadFile, RcFile } from "antd/lib/upload/interface";
 import { UploadOutlined } from "@ant-design/icons";
 
-import { S3Fields, SignedUrl } from "./types";
-import { allFileTypes, getFileSizeLimit } from "./utils";
-import { request } from "./client";
+import { S3Fields, SignedUrl } from "../libs/types";
+import { allFileTypes, getFileSizeLimit } from "../libs/utils";
+import { request } from "../libs/client";
 
 export type UploadsProps = {
   initialFiles?: UploadFile[];
